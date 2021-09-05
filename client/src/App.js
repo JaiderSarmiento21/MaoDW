@@ -99,9 +99,14 @@ class App extends Component {
     fetch(`http://localhost:5000/api/page${this.state.spage}`)
       .then((res) => res.json())
       .then((data) => {
-        // console.log(data)
+         console.log(data)
+    
         if(typeof data === 'string'){
-            toast.error('No hay más paginas')
+            if(data === 'No Hay Datos'){
+              toast.success('No Hay Ragistros');
+            }else{
+            toast.error('No hay más paginas');
+          }
         }else{
         this.setState({ donors: data });
       }
@@ -128,7 +133,8 @@ class App extends Component {
                   name="id"
                   placeholder="Id"
                   className="form-control"
-                  onChange={this.handleChange}
+                  onChange={this.handleChange} 
+                  required
                 />
               </div>
               <div className="form-group col-md-6">
@@ -138,6 +144,7 @@ class App extends Component {
                   placeholder="Nombre donante"
                   className="form-control"
                   onChange={this.handleChange}
+                  required
                 />
               </div>
               <div className="form-group col-md-5">
@@ -147,6 +154,7 @@ class App extends Component {
                   placeholder="Apellido del donate"
                   className="form-control"
                   onChange={this.handleChange}
+                  required
                 />
               </div>
               <div className="form-group col-md-2">
@@ -156,6 +164,7 @@ class App extends Component {
                   placeholder=" # donate"
                   className="form-control"
                   onChange={this.handleChange}
+                  required
                 />
               </div>
               <div className="form-group col-md-3">
@@ -166,6 +175,7 @@ class App extends Component {
                   placeholder="valor"
                   className="form-control"
                   onChange={this.handleChange}
+                  required
                 />
               </div>
               <div className="form-group col-md-7">
@@ -175,6 +185,7 @@ class App extends Component {
                   placeholder="url de la imagen"
                   className="form-control"
                   onChange={this.handleChange}
+                  required
                 />
               </div>
               <div className="form-group col-md-10">

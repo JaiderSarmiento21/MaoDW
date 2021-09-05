@@ -28,7 +28,10 @@ router.get("/page:page", async (req, res) => {
       .limit(sizePage);
 
     const u = user;
-    if (user.length === 0) {
+    
+    if(u == ''){
+      res.json('No Hay Datos');
+    }else if (user.length === 0) {
       res.json("No existen más datos");
     } else {
       res.json(u);
@@ -110,7 +113,7 @@ router.put("/:id", async (req, res) => {
 router.delete("/id:id", async (req, res) => {
   try {
     const id = req.params.id;
-    console.log(id);
+   
     const deleteUser = await User.deleteOne({ id: id });
 
     if (deleteUser === null || deleteUser.deletedCount === 0) {
